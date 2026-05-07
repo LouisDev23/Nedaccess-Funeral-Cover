@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline PWA Full Stack</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+
+  <meta name="theme-color" content="#111827">
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Offline First PWA</h1>
+
+  <div class="status-box">
+    <div id="connectionStatus">Checking...</div>
+    <div id="syncStatus">Waiting...</div>
+  </div>
+
+  <form id="taskForm">
+    <input type="text" id="title" placeholder="Task Title" required>
+    <textarea id="description" placeholder="Task Description"></textarea>
+
+    <button type="submit">Save Task</button>
+  </form>
+
+  <div class="buttons">
+    <button id="syncBtn">Force Sync</button>
+  </div>
+
+  <h2>Offline Tasks</h2>
+
+  <div id="taskList"></div>
+
+</div>
+
+<script src="db.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
