@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json({ limit: "2mb" }));
 app.use(express.static(__dirname));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 let pgPool = null;
 function getPgPool() {

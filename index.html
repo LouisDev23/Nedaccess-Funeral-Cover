@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MyCover Funeral - Demo</title>
+  <title>MyCover Funeral - Agent Portal</title>
 
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="styles.css">
@@ -12,34 +12,47 @@
 </head>
 <body>
 
-<div class="container">
+<header class="appBar">
+  <div class="appBarTitle">Agent Portal</div>
+</header>
 
-  <div class="topBar">
-    <div class="brand">
-      <div class="brandMark">N</div>
-      <div class="brandText">
-        <div class="brandTitle">Nedbank Demo</div>
-        <div class="brandSub">Offline-first form capture + Azure SQL storage</div>
-      </div>
-    </div>
+<main class="page">
+
+  <div class="pageHeader">
+    <button class="backBtn" id="backToDashboardBtn" type="button">
+      <span class="backBtnArrow">&larr;</span>
+      <span>Back to Dashboard</span>
+    </button>
+    <h1 class="pageTitle">Edit Application</h1>
+  </div>
+  <p class="pageSubtitle" id="appSubtitle">Continue working on application #---</p>
+
+  <section class="stepperCard" id="stepper" aria-label="Application progress"></section>
+
+  <section class="formCard">
+    <h2 class="formCardTitle">Application Form</h2>
+    <div class="banner banner--info" id="statusBanner">Loading...</div>
+    <nav class="tabs" id="tabs" aria-label="Form sections"></nav>
+    <div class="tabPanel" id="tabPanel"></div>
+  </section>
+
+  <div class="footerBar">
+    <button id="saveDraftBtn" class="btnSecondary" type="button">Save draft</button>
+    <button id="backStepBtn" class="btnGhost" type="button" disabled>Back</button>
+    <button id="nextStepBtn" class="btnPrimary" type="button">Next</button>
+    <button id="submitBtn" class="btnPrimary" type="button" hidden>Submit</button>
+    <button id="syncBtn" class="btnGhost" type="button">Force sync</button>
+    <button id="newAppBtn" class="btnGhost" type="button">New application</button>
     <a class="dbLink" href="/view-database.html">View stored submissions</a>
   </div>
 
   <div class="status-box">
-    <div id="connectionStatus">Checking...</div>
-    <div id="syncStatus">Waiting...</div>
+    <span id="connectionStatus">Checking...</span>
+    <span class="status-sep">&middot;</span>
+    <span id="syncStatus">Waiting...</span>
   </div>
 
-  <div class="actionBar">
-    <button id="saveDraftBtn" class="btnSecondary" type="button">Save draft</button>
-    <button id="submitBtn" class="btnPrimary" type="button">Submit</button>
-    <button id="syncBtn" class="btnGhost" type="button">Force sync</button>
-    <button id="newAppBtn" class="btnGhost" type="button">New application</button>
-  </div>
-
-  <div id="formMount"></div>
-
-</div>
+</main>
 
 <script src="db.js"></script>
 <script src="product-schema.js"></script>
