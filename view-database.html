@@ -2,39 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Database Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stored Submissions</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="container">
 
-<h1>Synced Database Records</h1>
+<div class="topBar">
+  <div class="brand">
+    <div class="brandMark">N</div>
+    <div class="brandText">
+      <div class="brandTitle">Stored submissions</div>
+      <div class="brandSub">From Azure SQL (latest 100)</div>
+    </div>
+  </div>
+  <a class="dbLink" href="/index.html">Back to form</a>
+</div>
 
-<div id="records"></div>
+<div class="sectionCard">
+  <div class="sectionHeader">
+    <div class="sectionTitle">Applications</div>
+  </div>
+  <div class="sectionDesc">Click a row to view the stored payload.</div>
+  <div id="records" class="sectionBody"></div>
+</div>
+
+<div id="details" class="sectionCard" style="display:none;margin-top:14px;">
+  <div class="sectionHeader">
+    <div class="sectionTitle">Application details</div>
+  </div>
+  <pre id="payload" class="tcBody" style="overflow:auto;"></pre>
+</div>
 
 </div>
 
 <script>
 async function loadRecords() {
-  const response = await fetch('/api/tasks');
-
+  const response = await fetch('/api/applications');
   const data = await response.json();
 
   const container = document.getElementById('records');
+  const details = document.getElementById('details');
+  const payload = document.getElementById('payload');
 
   container.innerHTML = '';
 
-  data.forEach(task => {
+  data.forEach(app => {
     const div = document.createElement('div');
 
-    div.className = 'task synced';
+    div.className = 'radioOption';
 
     div.innerHTML = `
-      <h3>${task.title}</h3>
-      <p>${task.description}</p>
-      <div class="small">${task.createdAt}</div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <div style="font-weight:800">${app.productKey} · v${app.version}</div>
+        <div class="helperText">State: ${app.state} · Updated: ${new Date(app.updatedAt).toLocaleString()}</div>
+        <div class="helperText">ID: ${app.id}</div>
+      </div>
     `;
+
+    div.addEventListener('click', async () => {
+      const r = await fetch(`/api/applications/${app.id}`);
+      const full = await r.json();
+      details.style.display = 'block';
+      payload.textContent = JSON.stringify(full, null, 2);
+      details.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
 
     container.appendChild(div);
   });

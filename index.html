@@ -3,42 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Offline PWA Full Stack</title>
+  <title>MyCover Funeral - Demo</title>
 
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="styles.css">
 
-  <meta name="theme-color" content="#111827">
+  <meta name="theme-color" content="#007A3D">
 </head>
 <body>
 
 <div class="container">
 
-  <h1>Offline First PWA</h1>
+  <div class="topBar">
+    <div class="brand">
+      <div class="brandMark">N</div>
+      <div class="brandText">
+        <div class="brandTitle">Nedbank Demo</div>
+        <div class="brandSub">Offline-first form capture + Azure SQL storage</div>
+      </div>
+    </div>
+    <a class="dbLink" href="/view-database.html">View stored submissions</a>
+  </div>
 
   <div class="status-box">
     <div id="connectionStatus">Checking...</div>
     <div id="syncStatus">Waiting...</div>
   </div>
 
-  <form id="taskForm">
-    <input type="text" id="title" placeholder="Task Title" required>
-    <textarea id="description" placeholder="Task Description"></textarea>
-
-    <button type="submit">Save Task</button>
-  </form>
-
-  <div class="buttons">
-    <button id="syncBtn">Force Sync</button>
+  <div class="actionBar">
+    <button id="saveDraftBtn" class="btnSecondary" type="button">Save draft</button>
+    <button id="submitBtn" class="btnPrimary" type="button">Submit</button>
+    <button id="syncBtn" class="btnGhost" type="button">Force sync</button>
+    <button id="newAppBtn" class="btnGhost" type="button">New application</button>
   </div>
 
-  <h2>Offline Tasks</h2>
-
-  <div id="taskList"></div>
+  <div id="formMount"></div>
 
 </div>
 
 <script src="db.js"></script>
+<script src="product-schema.js"></script>
+<script src="form-engine.js"></script>
+<script src="render-form.js"></script>
 <script src="app.js"></script>
 
 </body>

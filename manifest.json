@@ -1,9 +1,9 @@
 {
-  "name": "Offline PWA Full Stack",
-  "short_name": "OfflinePWA",
+  "name": "MyCover Funeral Demo",
+  "short_name": "MyCoverDemo",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#111827",
+  "background_color": "#061b12",
+  "theme_color": "#007A3D",
   "icons": []
 }

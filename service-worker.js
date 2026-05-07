@@ -1,4 +1,4 @@
-const CACHE_NAME = 'offline-pwa-cache-v1';
+const CACHE_NAME = 'offline-pwa-cache-v2';
 
 const ASSETS = [
   './',
@@ -6,6 +6,9 @@ const ASSETS = [
   './styles.css',
   './app.js',
   './db.js',
+  './product-schema.js',
+  './form-engine.js',
+  './render-form.js',
   './manifest.json'
 ];
 
