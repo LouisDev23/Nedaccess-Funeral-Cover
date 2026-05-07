@@ -1,6 +1,5 @@
 const express = require("express");
 const sql = require("mssql");
-require("msnodesqlv8");
 const { Pool } = require("pg");
 
 const app = express();
@@ -28,6 +27,14 @@ function getSqlConfig() {
   // If a full connection string is provided, use it (supports local SQL Server + integrated security via msnodesqlv8)
   const connectionString = process.env.MSSQL_CONNECTION_STRING;
   if (connectionString) {
+    // Only load msnodesqlv8 when using integrated security (keeps Render/Linux builds working)
+    try {
+      require("msnodesqlv8");
+    } catch (e) {
+      throw new Error(
+        "msnodesqlv8 is required for MSSQL_CONNECTION_STRING but is not installed/available in this environment."
+      );
+    }
     return {
       connectionString,
       driver: "msnodesqlv8",
